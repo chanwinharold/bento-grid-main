@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* { margin: 0; }
+
+// Variables
+$firstBgColor: hsl(254, 88%, 90%);
+$secondBgColor: hsl(256, 67%, 59%);
+$thirdBgColor: hsl(31, 66%, 93%);
+$fourthBgColor: hsl(39, 100%, 71%);
+$fifthBgColor: hsl(0, 0%, 100%);
+$sixthBgColor: hsl(0, 0%, 7%);
+
+$txSize: 1.1em;
+$lightWeight: 400;
+$boldWeight: 500;
+
+// Mixins
+@mixin flexbox($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+body {
+    min-height: 100vh;
+    @include flexbox(column, center, center);
+    background-color: wheat;
+}
+
+.container {
+    max-width: 80%;
+    display: grid;
+    grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+    margin: 3rem;
+
+    &__element {
+        font-family: "DM Sans", sans-serif;
+        font-size: $txSize;
+        line-height: 1.5em;
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 1.5rem;
+    }
+
+    .one {
+        grid-row: 1 / 5;
+        grid-column: 2 / 4;
+        background-color: $secondBgColor ;
+        @include flexbox(column, center, center);
+        gap: 15px;
+        color: white;
+
+        h1 {
+            font-size: 3.2em;
+            font-weight: $boldWeight;
+            line-height: 1em;
+            text-align: center;
+
+            span {
+                color: $fourthBgColor;
+            }
+        }
+    }
+    .two {
+        grid-row: 5 / 8;
+        grid-column: 2 / 3;
+        background-color: $fifthBgColor ;
+        @include flexbox(column, center, flex-start);
+        gap: 15px;
+    
+        h2 {
+            font-weight: $boldWeight;
+            text-align: left;
+        }
+    }
+    .three {
+        grid-row: 5 / 8;
+        grid-column: 3 / 4;
+        background-color: $fourthBgColor ;
+        @include flexbox(column, flex-start, flex-start);
+        gap: 15px;
+    
+        h2 {
+            font-weight: $boldWeight;
+            text-align: left;
+        }
+    }
+    .four {
+        grid-row: 1 / 8;
+        grid-column: 4 / 5;
+        background-color: $firstBgColor ;
+        @include flexbox(column, flex-start, flex-start);
+        gap: 15px;
+    
+        h2 {
+            font-weight: $boldWeight;
+            text-align: left;
+        }
+    }
+    .five {
+        grid-row: 8 / 11;
+        grid-column: 3 / 5;
+        background-color: $secondBgColor ;
+        @include flexbox(row, flex-start, center);
+        gap: 15px;
+    
+        h2 {
+            font-size: 2em;
+            font-weight: $boldWeight;
+            line-height: 1em;
+            color: white;
+            text-align: left;
+        }
+    }
+    .six {
+        grid-row: 8 / 11;
+        grid-column: 2 / 3;
+        background-color: $fifthBgColor ;
+        @include flexbox(column, flex-start, flex-start);
+        gap: 20px;
+
+        h2 {
+            font-size: 3em;
+            font-weight: $boldWeight;
+            margin-bottom: 15px;
+        }
+        
+    }
+    .seven {
+        grid-row: 1 / 6;
+        grid-column: 1 / 2;
+        background-color: $thirdBgColor ;
+        @include flexbox(column, flex-start, flex-start);
+        gap: 15px;
+        
+        h2 {
+            font-size: 1.8em;
+            font-weight: $boldWeight;
+            span {
+                color: $secondBgColor;
+            }
+        }
+    }
+    .eight {
+        grid-row: 6 / 11;
+        grid-column: 1 / 2;
+        background-color: $fourthBgColor ;
+        @include flexbox(column, flex-start, flex-start);
+        gap: 15px;
+        
+        h2 {
+            font-size: 2em;
+            font-weight: $boldWeight;
+            line-height: 1em;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        min-width: 250px;
+        
+        @include flexbox(column, center, center);
+    }
+    .element {
+        max-width: 400px;
+        text-wrap: wrap;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.attribution { font-size: 11px; text-align: center; a { color: hsl(228, 45%, 44%); } }
