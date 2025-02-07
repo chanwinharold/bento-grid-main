@@ -161,7 +161,7 @@ body {
 
 @media screen and (max-width: 768px) {
     .container {
-        min-width: 250px;
+        width: 90vw;
         
         @include flexbox(column, center, center);
     }
