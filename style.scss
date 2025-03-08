@@ -37,6 +37,7 @@ body {
     margin: 3rem;
 
     &__element {
+        width: 90vw;
         font-family: "DM Sans", sans-serif;
         font-size: $txSize;
         line-height: 1.5em;
@@ -161,6 +162,7 @@ body {
 
 @media screen and (max-width: 768px) {
     .container {
+      
         min-width: 90vw;
         
         @include flexbox(column, center, center);
