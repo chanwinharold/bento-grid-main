@@ -8,182 +8,113 @@ $secondBgColor: hsl(256, 67%, 59%);
 $thirdBgColor: hsl(31, 66%, 93%);
 $fourthBgColor: hsl(39, 100%, 71%);
 $fifthBgColor: hsl(0, 0%, 100%);
-$sixthBgColor: hsl(0, 0%, 7%);
+$textColor: hsl(0, 0%, 7%);
 
 $txSize: 1.1em;
 $lightWeight: 400;
 $boldWeight: 500;
 
-// Mixins
-@mixin flexbox($direction, $justify, $align) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
-}
-
 body {
     min-height: 100vh;
-    @include flexbox(column, center, center);
+    display: grid;
+    place-content: center;
+    padding-block: 1rem;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: $txSize;
     background-color: wheat;
+    color: $textColor;
 }
 
 .container {
-    max-width: 80%;
-    display: grid;
-    grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 30px;
-    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    img { max-width: 280px; }
 
     &__element {
-        width: 90vw;
-        font-family: "DM Sans", sans-serif;
-        font-size: $txSize;
-        line-height: 1.5em;
+        width: min(80%, 600px);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
         border-radius: 8px;
         overflow: hidden;
-        padding: 1.5rem;
+        padding: 2rem;
+
+        h1 { font-size: $txSize*2.5; font-weight: $boldWeight; }
+        h2 { font-size: $txSize*2; font-weight: $boldWeight; }
     }
 
     .one {
-        grid-row: 1 / 5;
-        grid-column: 2 / 4;
-        background-color: $secondBgColor ;
-        @include flexbox(column, center, center);
-        gap: 15px;
         color: white;
-
-        h1 {
-            font-size: 3.2em;
-            font-weight: $boldWeight;
-            line-height: 1em;
-            text-align: center;
-
-            span {
-                color: $fourthBgColor;
-            }
-        }
-    }
-    .two {
-        grid-row: 5 / 8;
-        grid-column: 2 / 3;
-        background-color: $fifthBgColor ;
-        @include flexbox(column, center, flex-start);
-        gap: 15px;
-    
-        h2 {
-            font-weight: $boldWeight;
-            text-align: left;
-        }
-    }
-    .three {
-        grid-row: 5 / 8;
-        grid-column: 3 / 4;
-        background-color: $fourthBgColor ;
-        @include flexbox(column, flex-start, flex-start);
-        gap: 15px;
-    
-        h2 {
-            font-weight: $boldWeight;
-            text-align: left;
-        }
-    }
-    .four {
-        grid-row: 1 / 8;
-        grid-column: 4 / 5;
-        background-color: $firstBgColor ;
-        @include flexbox(column, flex-start, flex-start);
-        gap: 15px;
-    
-        h2 {
-            font-weight: $boldWeight;
-            text-align: left;
-        }
+        align-items: center;
+        text-align: center;
+        background-color: $secondBgColor ;
     }
     .five {
-        grid-row: 8 / 11;
-        grid-column: 3 / 5;
+        align-items: center;
+        text-align: center;
         background-color: $secondBgColor ;
-        @include flexbox(row, flex-start, center);
-        gap: 15px;
-    
-        h2 {
-            font-size: 2em;
-            font-weight: $boldWeight;
-            line-height: 1em;
-            color: white;
-            text-align: left;
-        }
     }
-    .six {
-        grid-row: 8 / 11;
-        grid-column: 2 / 3;
-        background-color: $fifthBgColor ;
-        @include flexbox(column, flex-start, flex-start);
-        gap: 20px;
+    .two { background-color: $fifthBgColor ;}
+    .three { background-color: $fourthBgColor ; }
+    .four {background-color: $firstBgColor ; }
+    .six { background-color: $fifthBgColor ; }
+    .seven { background-color: $thirdBgColor ; }
+    .eight { background-color: $fourthBgColor ; }
+}
 
-        h2 {
-            font-size: 3em;
-            font-weight: $boldWeight;
-            margin-bottom: 15px;
-        }
-        
+@media screen and (550px < width < 768px) {
+    .container {
+        display: grid;
+        grid-template-areas:
+        "one one"
+        "two three"
+        "four eight"
+        "six seven"
+        "five five";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(5, max-content);
+        place-items: center;
+        gap: 2rem;
+
+        .one { grid-area: one }
+        .two { grid-area: two; }
+        .three { grid-area: three; }
+        .four { grid-area: four; }
+        .five { grid-area: five; flex-direction: row; }
+        .six { grid-area: six; }
+        .seven { grid-area: seven; }
+        .eight { grid-area: eight; }
+
     }
-    .seven {
-        grid-row: 1 / 6;
-        grid-column: 1 / 2;
-        background-color: $thirdBgColor ;
-        @include flexbox(column, flex-start, flex-start);
-        gap: 15px;
-        
-        h2 {
-            font-size: 1.8em;
-            font-weight: $boldWeight;
-            span {
-                color: $secondBgColor;
+}
+
+@media screen and (width > 768px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 0.5fr) repeat(3, 1fr);
+
+        &__element {
+            min-width: 0;
+            min-height: 0;
+
+            & > * {
+                display: none;
             }
         }
-    }
-    .eight {
-        grid-row: 6 / 11;
-        grid-column: 1 / 2;
-        background-color: $fourthBgColor ;
-        @include flexbox(column, flex-start, flex-start);
-        gap: 15px;
-        
-        h2 {
-            font-size: 2em;
-            font-weight: $boldWeight;
-            line-height: 1em;
-        }
+
+        .one { grid-column: 2/4; grid-row: 1/4; }
+        .two { grid-column: 2; grid-row: 4/6; }
+        .three { grid-column: 3; grid-row: 4/6; }
+        .four { grid-column: 4; grid-row: 1/6; }
+        .five { grid-column: 3 / 5; grid-row: 6/8; flex-direction: row; }
+        .six { grid-column: 2; grid-row: 6/8; }
+        .seven { grid-column: 1; grid-row: 1/5; }
+        .eight { grid-column: 1; grid-row: 5/8; }
+
     }
 }
-
-@media screen and (max-width: 768px) {
-    .container {
-        width: 90vw;
-        
-        @include flexbox(column, center, center);
-    }
-    .element {
-        max-width: 400px;
-        text-wrap: wrap;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.attribution { font-size: 11px; text-align: center; a { color: hsl(228, 45%, 44%); } }
